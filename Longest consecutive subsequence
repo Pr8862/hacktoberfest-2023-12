@@ -1,0 +1,59 @@
+Given an array of positive integers. Find the length of the longest sub-sequence such that elements in the subsequence are consecutive integers, the consecutive numbers can be in any order.
+ 
+
+Example 1:
+
+Input:
+N = 7
+a[] = {2,6,1,9,4,5,3}
+Output:
+6
+Explanation:
+The consecutive numbers here
+are 1, 2, 3, 4, 5, 6. These 6 
+numbers form the longest consecutive
+subsquence.
+Example 2:
+
+Input:
+N = 7
+a[] = {1,9,3,10,4,20,2}
+Output:
+4
+Explanation:
+1, 2, 3, 4 is the longest
+consecutive subsequence.
+
+
+def longest_consecutive_subsequence(N, arr):
+    if N == 0:
+        return 0
+
+    # Create a set to store all the elements in the array
+    num_set = set(arr)
+
+    max_length = 0
+
+    for num in num_set:
+        if num - 1 not in num_set:
+            current_num = num
+            current_length = 1
+
+            while current_num + 1 in num_set:
+                current_num += 1
+                current_length += 1
+
+            max_length = max(max_length, current_length)
+
+    return max_length
+
+# Example usage
+N1 = 7
+arr1 = [2, 6, 1, 9, 4, 5, 3]
+result1 = longest_consecutive_subsequence(N1, arr1)
+print(result1)  # Output: 6
+
+N2 = 7
+arr2 = [1, 9, 3, 10, 4, 20, 2]
+result2 = longest_consecutive_subsequence(N2, arr2)
+print(result2)  # Output: 4
